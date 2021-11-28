@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="container border border-muted rounded p-3 shadow">
+    <div class="container bg-light">
+        @foreach (var mail in Model.Mail)
+        {
+            <a class="mailbut" asp-page="Mail" asp-route-mailid="@mail">
+                <div class="row border-bottom p-2 mail">
+                    <div class="col"><span>@mail.Email</span></div>
+                    <div class="col"><span>@mail.Subject</span></div>
+                    <div class="col text-right"><span>@mail.Date</span></div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
