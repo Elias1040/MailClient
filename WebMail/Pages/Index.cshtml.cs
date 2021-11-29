@@ -10,6 +10,7 @@ using OpenPop.Pop3;
 using System.Net;
 using System.Net.Mail;
 using WebMail.Classes;
+using Microsoft.AspNetCore.Http;
 
 namespace WebMail.Pages
 {
@@ -25,8 +26,12 @@ namespace WebMail.Pages
         public int MailCount { get; set; }
         public List<Mails> Mail { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if(HttpContext.Session.GetString("Logged in") != "1")
+            {
+                return RedirectToPage("Login");
+            }
             Pop3Client Client = new Pop3Client();
             Client.Connect("pop.gmail.com", 995, true);
             Client.Authenticate("testsmtp799@gmail.com", "aub89sas");
@@ -47,6 +52,7 @@ namespace WebMail.Pages
                 mail.MailContent = message;
                 Mail.Add(mail);
             }
+            return Page();
         }
     }
 }
