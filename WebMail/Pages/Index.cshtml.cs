@@ -23,35 +23,18 @@ namespace WebMail.Pages
             _logger = logger;
         }
 
-        public int MailCount { get; set; }
+        
         public List<Mails> Mail { get; set; }
-
         public IActionResult OnGet()
         {
             if(HttpContext.Session.GetString("Logged in") != "1")
             {
                 return RedirectToPage("Login");
             }
-            Pop3Client Client = new Pop3Client();
-            Client.Connect("pop.gmail.com", 995, true);
-            Client.Authenticate("testsmtp799@gmail.com", "aub89sas");
 
-            Mail = new List<Mails>();
-
-            MailCount = Client.GetMessageCount();
-            for (int i = MailCount; i >= 1; i--)
-            {
-                MessageHeader headers = Client.GetMessageHeaders(i);
-                string message = Convert.ToString(Client.GetMessage(i));
-                Mails mail = new Mails();
-                string from = Convert.ToString(headers.From);
-
-                mail.Email = from.Split('<')[1].Split('>')[0];
-                mail.Subject = headers.Subject;
-                mail.Date = headers.Date;
-                mail.MailContent = message;
-                Mail.Add(mail);
-            }
+            PoP3 mails = new PoP3();
+            Mail = mails.ShowMail(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
+            
             return Page();
         }
     }
