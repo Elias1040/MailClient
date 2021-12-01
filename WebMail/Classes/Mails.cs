@@ -36,6 +36,9 @@ namespace WebMail.Classes
             {
                 Client = new ImapClient();
                 Client.Connect("imap.gmail.com", 993, true);
+                //test Email
+                //Mail: tt4875786@gmail.com
+                //password: 1xbu^n3t!T4M
                 Client.Authenticate(Email, Password);
                 Client.Inbox.Open(FolderAccess.ReadOnly);
                 return true;

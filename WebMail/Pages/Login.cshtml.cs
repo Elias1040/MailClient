@@ -23,8 +23,8 @@ namespace WebMail.Pages
             Imap Con = new Imap();
             if (Con.Login(Email, Password))
             {
-                DataBase db = new DataBase();
-                db.AddEmail(Email, Password);
+                //DataBase db = new DataBase();
+                //db.AddEmail(Email, Password);
                 HttpContext.Session.SetString("Logged in", "1");
                 HttpContext.Session.SetString("Email", Email);
                 HttpContext.Session.SetString("Password", Password);
