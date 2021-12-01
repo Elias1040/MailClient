@@ -1,4 +1,5 @@
-﻿using MailKit;
+﻿using HtmlAgilityPack;
+using MailKit;
 using MailKit.Net.Imap;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using OpenPop.Mime.Header;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using WebMail.Classes;
 
@@ -21,7 +23,7 @@ namespace WebMail.Classes
         public string MailContent { get; set; }
     }
 
-    public class PoP3
+    public class Imap
     {
         public ImapClient Client { get; set; }
         public int MailCount { get; set; }
@@ -82,11 +84,30 @@ namespace WebMail.Classes
         {
 
             Login(Email, Password);
-            var inbox = Client.Inbox;
-            string message1 = inbox.GetMessage(count).GetTextBody(MimeKit.Text.TextFormat.Plain);
-            //count = Client.GetMessageCount() - count;
-            //var message = Client.GetMessage(count).MessagePart.MessageParts[0];
-            //var message1 = message.BodyEncoding.GetString(message.Body.);
+            var inbox = Client.Inbox.GetMessage(count);
+            string message1 = inbox.GetTextBody(MimeKit.Text.TextFormat.Html);
+
+            //List<char> chars = new List<char>();
+            //bool endTag = false;
+            //foreach (char item in message1)
+            //{
+            //    if (item == '>')
+            //    {
+            //        endTag = true;
+            //    }
+            //    if (item != '<' && endTag)
+            //    {
+            //        chars.Add(item);
+            //        if (item == '<')
+            //        {
+            //            endTag = false;
+            //        }
+            //    }
+            //}
+            //foreach (char item in chars)
+            //{
+            //    message1 += item;
+            //}
             return message1;
         }
     }

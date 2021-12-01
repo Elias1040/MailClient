@@ -2,6 +2,6 @@
 @model WebMail.Pages.MailModel
 @{
 }
-<div class="container border border-muted">
-    <span>@Model.Content</span>
+<div class="container border border-muted overflow-hidden MailContainer">
+    @Model.GetHtml()
 </div>

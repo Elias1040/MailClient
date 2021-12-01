@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenPop.Mime.Header;
-using OpenPop.Pop3;
 using System.Net;
 using System.Net.Mail;
 using WebMail.Classes;
@@ -32,7 +31,7 @@ namespace WebMail.Pages
                 return RedirectToPage("Login");
             }
 
-            PoP3 mails = new PoP3();
+            Imap mails = new Imap ();
             Mail = mails.ShowMail(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
             
             return Page();

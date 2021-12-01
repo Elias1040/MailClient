@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using OpenPop.Pop3;
 using WebMail.Classes;
+using static WebMail.Classes.Imap;
 
 namespace WebMail.Pages
 {
@@ -20,7 +20,7 @@ namespace WebMail.Pages
 
         public IActionResult OnPost()
         {
-            PoP3 Con = new PoP3();
+            Imap Con = new Imap();
             if (Con.Login(Email, Password))
             {
                 DataBase db = new DataBase();

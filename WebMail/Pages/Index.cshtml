@@ -7,7 +7,7 @@
 
 <div class="container border border-muted rounded p-3 shadow">
     <div class="container bg-light">
-        @for (int i = 0; i < Model.Mail.Count; i++)
+        @for (int i = Model.Mail.Count - 1; i >= 0; i--)
         {
             <a class="mailbut" asp-page="Mail" asp-route-count="@i">
                 <div class="row border-bottom p-2 mail">
