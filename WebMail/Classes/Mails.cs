@@ -89,29 +89,18 @@ namespace WebMail.Classes
             Login(Email, Password);
             var inbox = Client.Inbox.GetMessage(count);
             string message1 = inbox.GetTextBody(MimeKit.Text.TextFormat.Html);
-
-            //List<char> chars = new List<char>();
-            //bool endTag = false;
-            //foreach (char item in message1)
-            //{
-            //    if (item == '>')
-            //    {
-            //        endTag = true;
-            //    }
-            //    if (item != '<' && endTag)
-            //    {
-            //        chars.Add(item);
-            //        if (item == '<')
-            //        {
-            //            endTag = false;
-            //        }
-            //    }
-            //}
-            //foreach (char item in chars)
-            //{
-            //    message1 += item;
-            //}
             return message1;
+        }
+
+        public List<string> ShowMailHead(int count, string Email, string Password)
+        {
+            Login(Email, Password);
+            List<string> list = new List<string>();
+            for (int i = 0; i < Client.Inbox.GetMessage(count).Headers.Count; i++)
+            {
+                list.Add(Client.Inbox.GetMessage(count).Headers[i].ToString());
+            }
+            return list;
         }
     }
 

@@ -17,14 +17,17 @@ namespace WebMail.Pages
     public class MailModel : PageModel
     {
         public string Content { get; set; }
+        public List<string> Head { get; set; }
         public int Count { get; set; }
         public void OnGet(int count)
         {
             Imap client = new Imap();
-            Content = client.ShowMailContent(count, HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
+            Head = new List<string>();
+            Head = client.ShowMailHead(count, HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
             Count = count;
             //return new HtmlString(Content);
         }
+
         public HtmlString GetHtml()
         {
             Imap client = new Imap();

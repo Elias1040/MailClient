@@ -3,5 +3,11 @@
 @{
 }
 <div class="container border border-muted overflow-auto MailContainer">
+    <div class="container border border-muted">
+        @for (int i = 0; i < 2; i++)
+        {
+            @Model.Head[i];
+        }
+    </div>
     @Model.GetHtml()
 </div>

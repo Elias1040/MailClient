@@ -21,7 +21,7 @@ namespace WebMail.Pages
         public IActionResult OnPost()
         {
             Imap Con = new Imap();
-            if (Con.Login(Email, Password))
+            if (Con.Login(Email, Password) != null)
             {
                 //DataBase db = new DataBase();
                 //db.AddEmail(Email, Password);
