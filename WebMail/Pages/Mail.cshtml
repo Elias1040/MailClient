@@ -4,9 +4,9 @@
 }
 <div class="container border border-muted overflow-auto MailContainer">
     <div class="container border border-muted">
-        @for (int i = 0; i < 2; i++)
+        @foreach (var item in Model.Head)
         {
-            @Model.Head[i];
+            @item
         }
     </div>
     @Model.GetHtml()

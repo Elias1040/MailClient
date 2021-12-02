@@ -62,25 +62,7 @@ namespace WebMail.Classes
                 mail.Date = inbox.GetMessage(i).Date.DateTime.ToShortDateString();
                 Mail.Add(mail);
             }
-
-
-
-
-            //MailCount = Client.Inbox.Count;
-            //for (int i = MailCount; i >= 1; i--)
-            //{
-            //    MessageHeader headers = Client.GetMessageHeaders(i);
-            //    var message = Client.GetMessage(i).MessagePart.MessageParts[0];
-            //    var message1 = message.BodyEncoding.GetString(message.Body);
-            //    Mails mail = new Mails();
-            //    string from = Convert.ToString(headers.From);
-
-            //    mail.Email = from.Split('<')[1].Split('>')[0];
-            //    mail.Subject = headers.Subject;
-            //    mail.Date = headers.Date;
-            //    Mail.Add(mail);
-            //}
-            return Mail;
+                return Mail;
         }
 
         public string ShowMailContent(int count, string Email, string Password)
@@ -95,11 +77,11 @@ namespace WebMail.Classes
         public List<string> ShowMailHead(int count, string Email, string Password)
         {
             Login(Email, Password);
+            var inbox = Client.Inbox.GetMessage(count);
             List<string> list = new List<string>();
-            for (int i = 0; i < Client.Inbox.GetMessage(count).Headers.Count; i++)
-            {
-                list.Add(Client.Inbox.GetMessage(count).Headers[i].ToString());
-            }
+            list.Add(inbox.From[0].Name);
+            list.Add(inbox.Subject);
+            list.Add(inbox.Date.DateTime.ToShortDateString());
             return list;
         }
     }
