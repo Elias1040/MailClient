@@ -11,7 +11,10 @@
     @using Microsoft.AspNetCore.Http;
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            
+            @if (Context.Session.GetString("Logged in") == "1")
+            {
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Send mail</button>
+            }
         </nav>
     </header>
     <div class="container">

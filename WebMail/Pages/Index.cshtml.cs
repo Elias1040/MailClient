@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using WebMail.Classes;
 using Microsoft.AspNetCore.Http;
+using MimeKit;
 
 namespace WebMail.Pages
 {
@@ -31,10 +32,31 @@ namespace WebMail.Pages
                 return RedirectToPage("Login");
             }
 
-            Imap mails = new Imap ();
+            Imap mails = new Imap();
             Mail = mails.ShowMail(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
             
             return Page();
+        }
+
+        [BindProperty]
+        public string Receiver { get; set; }
+        [BindProperty]
+        public string Subject { get; set; }
+        [BindProperty]
+        public string Message { get; set; }
+
+        public IActionResult OnPost()
+        {
+            if (HttpContext.Session.GetString("Logged in") != "1")
+            {
+                return RedirectToPage("Login");
+            }
+            string Sender = HttpContext.Session.GetString("Email");
+            string password = HttpContext.Session.GetString("Password");
+            Imap mail = new Imap();
+            mail.SendMessage(Sender, Receiver, Subject, Message, password);
+
+            return RedirectToPage("index");
         }
     }
 }
