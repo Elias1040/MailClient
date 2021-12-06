@@ -124,3 +124,12 @@ input{
     width: 200px;
     border-color: black;
 }
+
+.header {
+    font-weight: 500;
+    font-size: 18px;
+}
+.from {
+    font-size: 15px;
+    color: gray;
+}

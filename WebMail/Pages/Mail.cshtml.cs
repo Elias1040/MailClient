@@ -19,13 +19,17 @@ namespace WebMail.Pages
         public string Content { get; set; }
         public List<string> Head { get; set; }
         public int Count { get; set; }
-        public void OnGet(int count)
+        public IActionResult OnGet(int count)
         {
+            if (HttpContext.Session.GetString("Logged in") != "1")
+            {
+                return RedirectToPage("Login");
+            }
             Imap client = new Imap();
             Head = new List<string>();
             Head = client.ShowMailHead(count, HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"));
             Count = count;
-            //return new HtmlString(Content);
+            return Page();
         }
 
         public HtmlString GetHtml()

@@ -80,6 +80,7 @@ namespace WebMail.Classes
             var inbox = Client.Inbox.GetMessage(count);
             List<string> list = new List<string>();
             list.Add(inbox.From[0].Name);
+            list.Add(inbox.From[0].ToString().Split('<', '>')[1]);
             list.Add(inbox.Subject);
             list.Add(inbox.Date.DateTime.ToShortDateString());
             return list;
