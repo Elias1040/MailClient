@@ -71,7 +71,7 @@ namespace WebMail.Classes
             Login(Email, Password);
             var inbox = Client.Inbox.GetMessage(count);
             string message1 = inbox.GetTextBody(MimeKit.Text.TextFormat.Html);
-            return message1;
+            return message1;//
         }
 
         public List<string> ShowMailHead(int count, string Email, string Password)
