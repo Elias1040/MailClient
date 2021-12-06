@@ -3,10 +3,16 @@
 @{
 }
 
-<div class="container border border-muted shadow">
+<div class="container border border-muted shadow loginContainer d-flex justify-content-center">
     <form method="post">
-        <input type="text" asp-for="Email" />
-        <input type="password" asp-for="Password" />
-        <input type="submit"/>
+        <div class="inputContainer">
+            <img src="~/perm_identity_black_24dp.svg" alt="Email" />
+            <input class="Input" type="text" asp-for="Email" />
+        </div>
+        <div class="inputContainer">
+            <img src="~/lock_black_24dp.svg" alt="Password" />
+            <input class="Input" type="password" asp-for="Password" />
+        </div>
+        <input type="submit" value="Login" class="d-block btn btn-primary mr-auto ml-auto mt-2" />
     </form>
 </div>

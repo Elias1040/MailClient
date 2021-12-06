@@ -87,5 +87,40 @@ body {
 
 .MailContainer{
     height: 800px;
-    
+}
+
+.loginContainer {
+    max-height: 400px !important;
+    min-height: 300px !important;
+    min-width: 250px !important;
+    max-width: 300px !important;
+    margin-top: 30px;
+}
+
+.inputContainer{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+form{
+    width: 100%;
+}
+
+input{
+    outline: none;
+}
+
+.Input {
+    border: none;
+    border-bottom: 2px solid darkgray;
+    width: 175px;
+    transition: width 0.25s;
+}
+
+.Input:focus{
+    width: 200px;
+    border-color: black;
 }

@@ -25,10 +25,17 @@ namespace WebMail.Pages
             {
                 //DataBase db = new DataBase();
                 //db.AddEmail(Email, Password);
-                HttpContext.Session.SetString("Logged in", "1");
-                HttpContext.Session.SetString("Email", Email);
-                HttpContext.Session.SetString("Password", Password);
-                return RedirectToPage("index");
+                try
+                {
+                    HttpContext.Session.SetString("Logged in", "1");
+                    HttpContext.Session.SetString("Email", Email);
+                    HttpContext.Session.SetString("Password", Password);
+                    return RedirectToPage("index");
+                }
+                catch (Exception)
+                {
+                    return Page();
+                }
             }
             else
             {
