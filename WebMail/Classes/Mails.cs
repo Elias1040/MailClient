@@ -91,7 +91,12 @@ namespace WebMail.Classes
 
             Login(Email, Password);
             var inbox = Client.Inbox.GetMessage(count);
+            
             string message1 = inbox.GetTextBody(MimeKit.Text.TextFormat.Html);
+            if (message1 == null)
+            {
+                message1 = inbox.GetTextBody(MimeKit.Text.TextFormat.Plain);
+            }
             return message1;
         }
 
